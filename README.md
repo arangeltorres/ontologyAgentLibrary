@@ -47,11 +47,19 @@ python main.py --mode det --action list_schema --payload_json '{
 }'
 ```
 
+### View Current Ontology
+```bash
+python main.py --mode det --action view_current_ontology --payload_json '{
+  "conn": {"type":"snowflake","account":"...","user":"...","password":"...","database":"ONT_TEST","schema":"PUBLIC"}
+}'
+```
+
 ### Available Actions
 - `list_schema`: List database schema information
 - `update_metadata`: Update comments and metadata
 - `execute_query`: Execute SQL queries
 - `get_ontology`: Return foreign key relationships
+- `view_current_ontology`: Get current ontology from knowledge graph storage
 
 ## Query Base System
 

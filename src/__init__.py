@@ -1,8 +1,8 @@
 """Database Agent System."""
 
-from .models import Conn, SchemaArgs, MetadataArgs, QueryArgs, DBType
+from .models import Conn, SchemaArgs, MetadataArgs, QueryArgs, OntologyArgs, DBType
 from .adapters import DBAdapter, get_adapter
-from .tools import list_schema, update_metadata, execute_query, get_ontology, run_deterministic
+from .tools import list_schema, update_metadata, execute_query, get_ontology, view_current_ontology, run_deterministic
 from .utils import ident, safe_json_dumps, build_filter_clause, build_postgres_filter_clause
 from .queries import query_manager
 
@@ -12,6 +12,7 @@ __all__ = [
     "SchemaArgs", 
     "MetadataArgs",
     "QueryArgs",
+    "OntologyArgs",
     "DBType",
     # Adapters
     "DBAdapter",
@@ -21,6 +22,7 @@ __all__ = [
     "update_metadata", 
     "execute_query",
     "get_ontology",
+    "view_current_ontology",
     "run_deterministic",
     # Utils
     "ident",

@@ -30,5 +30,9 @@
   "describe_table": {
     "sql": "DESCRIBE TABLE {table_name}",
     "description": "Describe table structure"
+  },
+  "view_current_ontology": {
+    "sql": "SELECT knowledge_graph_json as knowledge_graph, id, created_at FROM KNOWLEDGE_GRAPH.JSON_STORAGE ORDER BY created_at DESC LIMIT 1",
+    "description": "Get the current ontology from knowledge graph storage"
   }
 }

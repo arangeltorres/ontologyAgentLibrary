@@ -59,3 +59,10 @@ class QueryArgs(BaseModel):
     
     conn: Conn
     sql: str
+
+class OntologyArgs(BaseModel):
+    """Arguments for ontology operations."""
+    model_config = ConfigDict(extra='forbid', json_schema_extra={'additionalProperties': False})
+    
+    conn: Conn
+    schema: Optional[str] = None

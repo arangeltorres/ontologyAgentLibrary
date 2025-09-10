@@ -1,11 +1,12 @@
-"""Modelos Pydantic para el sistema de agentes de base de datos."""
+"""Pydantic models for the database agent system."""
 
-from .schemas import Conn, SchemaArgs, MetadataArgs, QueryArgs, DBType
+from .schemas import Conn, SchemaArgs, MetadataArgs, QueryArgs, OntologyArgs, DBType
 
 __all__ = [
     "Conn",
     "SchemaArgs", 
     "MetadataArgs",
     "QueryArgs",
+    "OntologyArgs",
     "DBType"
 ]

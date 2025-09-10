@@ -1,0 +1,61 @@
+# Compilados de Python
+__pycache__/
+*.py[cod]
+*$py.class
+*/__pycache__/*
+*.pyc
+
+# Entornos virtuales
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Archivos de configuración sensibles
+*.env
+*.env.*
+
+# Archivos de logs
+*.log
+
+# Archivos de pruebas / cobertura
+.pytest_cache/
+.coverage
+.tox/
+.nox/
+htmlcov/
+*.cover
+*.py,cover
+coverage.xml
+
+# Archivos de IDEs y editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Compilación y distribución
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+
+# Cachés
+.mypy_cache/
+.pyre/
+.pytype/
+
+# Notebooks
+.ipynb_checkpoints
+
+# Docker
+docker-compose.override.yml
+
+# Otros
+*.sqlite3

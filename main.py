@@ -21,7 +21,7 @@ agent = Agent(
 if __name__ == "__main__":
     p = argparse.ArgumentParser()
     p.add_argument("--mode", choices=["agent","det"], default="det")
-    p.add_argument("--action", choices=["list_schema","update_metadata","execute_query","get_ontology"])
+    p.add_argument("--action", choices=["list_schema","update_metadata","execute_query","get_ontology","view_current_ontology"])
     p.add_argument("--payload_json", required=True)
     a = p.parse_args()
     
