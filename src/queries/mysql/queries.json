@@ -1,0 +1,26 @@
+{
+  "list_schema": {
+    "sql": "SELECT table_schema, table_name, column_name, data_type, is_nullable, column_comment FROM information_schema.columns WHERE table_schema NOT IN ('information_schema', 'performance_schema', 'mysql', 'sys') {schema_filter} {table_filter} ORDER BY table_schema, table_name, ordinal_position",
+    "description": "List database schema information"
+  },
+  "update_table_comment": {
+    "sql": "ALTER TABLE {table_name} COMMENT = '{comment}'",
+    "description": "Update table comment"
+  },
+  "update_column_comment": {
+    "sql": "ALTER TABLE {table_name} MODIFY COLUMN {column_name} COMMENT '{comment}'",
+    "description": "Update column comment"
+  },
+  "get_foreign_keys": {
+    "sql": "SELECT tc.table_schema, tc.table_name, kcu.column_name, ccu.table_schema AS fk_table_schema, ccu.table_name AS fk_table_name, ccu.column_name AS fk_column_name FROM information_schema.table_constraints tc JOIN information_schema.key_column_usage kcu ON tc.constraint_name=kcu.constraint_name AND tc.table_schema=kcu.table_schema JOIN information_schema.referential_constraints rc ON tc.constraint_name=rc.constraint_name AND tc.table_schema=rc.constraint_schema JOIN information_schema.constraint_column_usage ccu ON rc.unique_constraint_name=ccu.constraint_name AND rc.unique_constraint_schema=ccu.constraint_schema WHERE tc.constraint_type='FOREIGN KEY' {schema_filter}",
+    "description": "Get foreign key relationships"
+  },
+  "list_tables": {
+    "sql": "SELECT table_schema, table_name, table_type, table_comment FROM information_schema.tables WHERE table_schema NOT IN ('information_schema', 'performance_schema', 'mysql', 'sys') {schema_filter} ORDER BY table_schema, table_name",
+    "description": "List all tables"
+  },
+  "describe_table": {
+    "sql": "DESCRIBE {table_name}",
+    "description": "Describe table structure"
+  }
+}

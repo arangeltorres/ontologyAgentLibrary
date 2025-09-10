@@ -1,0 +1,17 @@
+{
+  "custom_knowledge_graph": {
+    "sql": "SELECT knowledge_graph_json as knowledge_graph, id, created_at FROM KNOWLEDGE_GRAPH.JSON_STORAGE ORDER BY created_at DESC LIMIT 1",
+    "description": "Custom query for knowledge graph data",
+    "category": "custom"
+  },
+  "user_tables": {
+    "sql": "SELECT table_name, table_type, comment FROM information_schema.tables WHERE table_schema = 'PUBLIC' AND table_name LIKE 'USER_%' ORDER BY table_name",
+    "description": "List all user tables",
+    "category": "filtered"
+  },
+  "recent_activity": {
+    "sql": "SELECT table_name, last_altered FROM information_schema.tables WHERE table_schema = 'PUBLIC' AND last_altered > DATEADD(day, -7, CURRENT_DATE()) ORDER BY last_altered DESC",
+    "description": "Get recently modified tables",
+    "category": "activity"
+  }
+}
