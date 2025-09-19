@@ -1,6 +1,6 @@
 # Database Agent System
 
-Modular system for interacting with different databases using AI agents with a flexible query base system.
+Modular system for interacting with different databases using AI agents with a flexible query base system and intelligent LangChain integration.
 
 ## Project Structure
 
@@ -21,17 +21,20 @@ Ontology AgentsSDK/
 │   │   └── __init__.py          # Tool functions
 │   ├── utils/                   # Utilities
 │   │   └── __init__.py          # Utility functions
-│   └── queries/                 # Query base system
-│       ├── __init__.py          # Query manager
-│       ├── snowflake/           # Snowflake queries
-│       │   ├── queries.json     # Standard queries
-│       │   └── custom_queries.json # Custom queries
-│       ├── postgres/            # PostgreSQL queries
-│       │   └── queries.json
-│       ├── mysql/               # MySQL queries
-│       │   └── queries.json
-│       └── databricks/          # Databricks queries
-│           └── queries.json
+│   ├── queries/                 # Query base system
+│   │   ├── __init__.py          # Query manager
+│   │   ├── snowflake/           # Snowflake queries
+│   │   │   ├── queries.json     # Standard queries
+│   │   │   └── custom_queries.json # Custom queries
+│   │   ├── postgres/            # PostgreSQL queries
+│   │   │   └── queries.json
+│   │   ├── mysql/               # MySQL queries
+│   │   │   └── queries.json
+│   │   └── databricks/          # Databricks queries
+│   │       └── queries.json
+│   └── agents/                  # LangChain intelligent agents
+│       ├── __init__.py          # Database agent classes
+│       └── config.py            # Agent configuration
 ├── main.py                      # Main entry point
 ├── requirements.txt             # Dependencies
 └── README.md                    # This file
@@ -47,6 +50,11 @@ python main.py --mode det --action list_schema --payload_json '{
 }'
 ```
 
+### LangChain AI-Powered Mode (NEW!)
+```bash
+python main.py --mode langchain --request "Show me the schema for my Snowflake database with account UDYYGAJ-ZBB68478"
+```
+
 ### View Current Ontology
 ```bash
 python main.py --mode det --action view_current_ontology --payload_json '{
@@ -60,6 +68,41 @@ python main.py --mode det --action view_current_ontology --payload_json '{
 - `execute_query`: Execute SQL queries
 - `get_ontology`: Return foreign key relationships
 - `view_current_ontology`: Get current ontology from knowledge graph storage
+
+## LangChain Integration
+
+The system now includes intelligent LangChain agents that can:
+
+### 🧠 **Intelligent Request Processing**
+- Parse natural language requests
+- Automatically determine the appropriate database action
+- Identify database type from context
+- Extract connection parameters from requests
+
+### 🔧 **Usage Examples**
+
+```bash
+# Natural language requests
+python main.py --mode langchain --request "List all tables in my PostgreSQL database"
+
+python main.py --mode langchain --request "Show me the foreign key relationships in Snowflake"
+
+python main.py --mode langchain --request "Get the current ontology from knowledge graph storage"
+
+python main.py --mode langchain --request "Execute this SQL: SELECT * FROM users WHERE active = true"
+```
+
+### ⚙️ **Configuration**
+
+Set your OpenAI API key:
+```bash
+export OPENAI_API_KEY="your-api-key-here"
+```
+
+Or pass it directly:
+```bash
+python main.py --mode langchain --request "..." --api_key "your-api-key"
+```
 
 ## Query Base System
 
@@ -132,3 +175,6 @@ pip install -r requirements.txt
 - **Custom Query Support**: Easy extension with custom queries
 - **Type Safety**: Full Pydantic model validation
 - **Agent Integration**: Ready for AI agent frameworks
+- **🧠 LangChain Integration**: Intelligent natural language processing
+- **🤖 AI-Powered Requests**: Automatic action and database type recognition
+- **📝 Natural Language Interface**: Human-friendly database interactions

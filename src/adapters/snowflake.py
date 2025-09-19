@@ -6,6 +6,7 @@ from .base import DBAdapter
 from ..models.schemas import Conn, MetadataArgs
 from ..utils import ident, build_filter_clause
 from ..queries import query_manager
+import os
 
 class SnowflakeAdapter(DBAdapter):
     """Adapter for Snowflake database connections."""
@@ -17,13 +18,13 @@ class SnowflakeAdapter(DBAdapter):
     def _conn(self):
         """Create a Snowflake connection."""
         return self._sf.connect(
-            account=self.c.account, 
-            user=self.c.user, 
-            password=self.c.password,
-            warehouse=self.c.warehouse, 
-            database=self.c.database, 
-            schema=self.c.schema_name, 
-            role=self.c.role
+            account=self.c.account or os.getenv("SNOWFLAKE_ACCOUNT"), 
+            user=self.c.user or os.getenv("SNOWFLAKE_USER"), 
+            password=self.c.password or os.getenv("SNOWFLAKE_PASSWORD"),
+            warehouse=self.c.warehouse or os.getenv("SNOWFLAKE_WAREHOUSE"), 
+            database=self.c.database or os.getenv("SNOWFLAKE_DATABASE"), 
+            schema=self.c.schema_name or os.getenv("SNOWFLAKE_SCHEMA"), 
+            role=self.c.role or os.getenv("SNOWFLAKE_ROLE")
         )
 
     def list_schema(self, database=None, schema=None, table=None):
